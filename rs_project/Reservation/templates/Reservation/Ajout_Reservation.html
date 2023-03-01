@@ -1,0 +1,60 @@
+{% extends 'Reservation/mainClient.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Choisisser votre reservation</title>
+    <!-- Bootstrap 5 CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+
+
+	<!-- Demo CSS (No need to include it into your project) -->
+	<link rel="stylesheet" href="{% static '/card/css/demo.css' %}">
+  
+  </head>
+  <body>
+ 
+  
+ <main>
+  
+  <div class="jumbotron">
+    <div class="row w-100">
+            <div class="col-md-6">
+                <div class="card border-success mx-sm-1 p-3">
+                  
+                    <div class="card border-success shadow text-success p-3 my-card" > <img src="{% static '/img _reservation/res21.png' %}" alt="" width="20" height="20" class="d-inline-block align-text-top">
+                      <div class="text-success text-center mt-3"><h5>RESERVER UNE SALLE </h5></div>
+         <center>             <a href="{% url 'ajout_reservation_salle_client' %}" class="btn btn-outline-success text-green border-success mt-auto align-self-start">Reservez-maintenant</a>
+         
+                    </div>
+                    <img src="{% static '/img _reservation/res11.jpg' %}" class="card-img-top" alt="Card Image">
+           
+                    <div class="text-info text-center mt-2"><h1> </h1></div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card border-success mx-sm-1 p-3">
+                    <div class="card border-success shadow text-success p-3 my-card"><img src="{% static '/img _reservation/res23.png' %}" alt="" width="20" height="20" class="d-inline-block align-text-top">
+                      <div class="text-success text-center mt-3"><h5>RESERVER UNE TABLE </h5></div>
+                      <center> <a href="{% url 'ajout_reservation_table_client' %}" class="btn btn-outline-success text-green border-success mt-auto align-self-start">Reservez-maintenant</a>
+         
+                    </div>
+                    <img src="{% static '/img _reservation/res7.jpg' %}" class="card-img-top" alt="Card Image">
+           
+                    <div class="text-success text-center mt-3"><h4> </h4></div>
+                    <div class="text-success text-center mt-2"><h1></h1></div>
+                </div>
+            </div>
+     <!-- End Demo HTML -->
+ </main>
+ 
+<!-- Bootstrap 5 JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+  </body>
+</html>
+ 
+{% endblock %}

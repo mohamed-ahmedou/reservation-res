@@ -1,0 +1,162 @@
+{% extends 'Reservation/mainClient.html' %}
+{% block content%}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Client</title>
+    
+	<!-- Demo CSS -->
+	<link rel="stylesheet" href="{% static 'table/css/demo.css' %}">
+      
+<style>
+.cd-table-container{
+  background: #fff;
+  box-shadow: 1px 2px 26px rgba(0, 0, 0, 0.2);
+  padding: 15px;
+  max-width: 720px;
+}
+/* Table Design */
+.cd-table{
+  width: 100%;
+  color: #666;
+  margin: 10px auto;
+  border-collapse: collapse;
+}
+
+.cd-table tr,
+.cd-table td{
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+.cd-table th{
+  background: #017721;
+  color: #fff;
+  padding: 10px;
+}
+
+/* Search Box */
+.cd-search{
+  padding: 10px;
+  border: 1px solid #ccc;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Search Title */
+.cd-title{
+  color: #666;
+  margin: 15px 0;
+}
+</style>
+  
+  </head>
+  <body>
+  
+    {% if msg == 1  %}
+   
+      <center> 
+       <div class="jumbotron">
+        <div class="row w-100">
+                <div class="col-sm">
+                    <div class="card border-success mx-sm-1 p-3" style="width: 596px;" >
+                        <div class="card border-success shadow text-success p-3 my-card" ><h4>  Bienvenue </h4>
+                        </div>
+                        <div class="text-success text-center mt-2"><h5> {{client.nom}} {{client.prenom}}</h1></div>
+                    </div>
+                </div>
+        
+       
+                
+        </center>
+        <main>
+      <!-- partial:index.partial.html -->
+      <section class="container cd-table-container">
+     <center>   <div class="card border-success mx-sm-1 p-3 "  style="width: 596px; height:80px;" >
+                        
+      <center> <h5> <div class="text-success text-center mt-3" > Votre reservation du salle a <span class="badge bg-success"> {{date_s.date_reservation}} </span> </div> </h4> </center>
+      </div>
+    </section>
+    <section class="container cd-table-container">
+      <center>   <div class="card border-success mx-sm-1 p-3 "  style="width: 596px; height:80px;" >
+                         
+       <center> <h5> <div class="text-success text-center mt-3" > Votre reservation du table a <span class="badge bg-success"> {{date.date_reservation}} </span></div> </h4> </center>
+       </div>
+     </section>
+    <section class="container cd-table-container" >
+   <center> <div class="card border-success mx-sm-1 p-3" style="width: 596px; height:80px;">
+        <center> <h5> <div class="text-success text-center mt-3" > Salle reserver par vous :   <span class="badge bg-success"> salle numero {{salle.salle.numero}}</span>  </div> </h4> </center>
+    </div>
+  </section>
+  <section class="container cd-table-container" >
+    <center> <div class="card border-success mx-sm-1 p-3" style="width: 596px; height:80px;">
+         <center> <h5> <div class="text-success text-center mt-3" > Table reserver par vous :   <span class="badge bg-success"> table numero {{table.table.numero}}</span> dans la salle <span class="badge bg-success"> numero {{table.table.salle.numero}}</span>  </div> </h4> </center>
+     </div>
+    </section>
+    <section class="container cd-table-container" >
+    <div class="col-sm">
+    <center>  <div class="card border-success mx-sm-1 p-3" style="width: 596px;" >
+      <form action="/Billet_salle_table/{{id_sa}}/{{id_ta}}/" method="post">
+          <center><a class="btn btn-outline-success text-success border-success" href="/Billet_salle_table/{{id_sa}}/{{id_ta}}/">Imprimer ticket</a> </span> </div></h1></h3> </center>
+          
+        </form>
+      </div>
+      <center>  <div class="card border-success mx-sm-1 p-3" style="width: 596px;" >
+        <center><a class="btn btn-outline-success text-success border-success" href="/vos_reservation_salle_table/">Retourner</a> </span> </div></h1></h3> </center>
+      </div>  
+    
+  </div>
+</div>
+</section>
+    </main>
+      <!-- partial -->
+      
+  
+{% endif  %}
+
+
+  
+{% if msg == "ne existe pas" %}
+
+<main>
+  <!-- partial:index.partial.html -->
+  <section class="container cd-table-container">
+    <h1> {{salle.numero}}</h1>
+    <h1> {{client.nom}}</h1>
+   <center> <h3> <span class="badge bg-danger">  Désolé !! </span> </center></h3>
+   <center> <h3><span class="badge bg-danger"> il n'ya pas de réservation  pour vos numero !! </span></h3>  </center>
+  </section>
+  <!-- partial -->
+  <section class="container cd-table-container">
+   
+    <center><h3><span class="badge bg-success"> Mais vous pouvez </span> <h1>  <a class="btn btn-outline-success text-black border-success solid green mt-auto align-self-start" href="{% url 'reservation_client' %}">Reserver Maintenant</a></h1></h3> </center>
+     
+   </section>
+   <section class="container cd-table-container">
+   
+    <center><h3> <h1>  <a class="btn btn-outline-success text-black border-success solid green mt-auto align-self-start" href="{% url 'vos_reservation_salle_table' %}">Retourner</a></h1></h3> </center>
+     
+   </section>
+   </main>
+  
+{% endif %}
+<main>
+  <!-- partial:index.partial.html -->
+  
+  <!-- partial -->
+   </main>
+
+
+
+
+
+ 
+  
+<!-- Table Search JS -->
+  
+  </body>
+</html>
+
+{% endblock %}

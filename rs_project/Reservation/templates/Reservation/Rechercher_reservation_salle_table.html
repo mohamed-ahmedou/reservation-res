@@ -1,0 +1,144 @@
+{% extends 'Reservation/main.html' %}
+{% block content%}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Client</title>
+    
+	<!-- Demo CSS -->
+	<link rel="stylesheet" href="{% static 'table/css/demo.css' %}">
+      
+<style>
+.cd-table-container{
+  background: #fff;
+  box-shadow: 1px 2px 26px rgba(0, 0, 0, 0.2);
+  padding: 15px;
+  max-width: 720px;
+}
+/* Table Design */
+.cd-table{
+  width: 100%;
+  color: #666;
+  margin: 10px auto;
+  border-collapse: collapse;
+}
+
+.cd-table tr,
+.cd-table td{
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+.cd-table th{
+  background: #017721;
+  color: #fff;
+  padding: 10px;
+}
+
+/* Search Box */
+.cd-search{
+  padding: 10px;
+  border: 1px solid #ccc;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Search Title */
+.cd-title{
+  color: #666;
+  margin: 15px 0;
+}
+</style>
+  
+  </head>
+  <body>
+<h4><center>  Reservation-salle-table </center></h4>
+  
+ <main>
+  <div class="row" >
+    <div class="col-sm">
+    </div>
+    <div class="col-sm">
+  </div>
+  <div class="col-sm">
+    <center>
+  
+        <form class="d-flex ml-3" method="POST" action="{% url 'rechercher_reservation_salle_table' %}" >
+          {% csrf_token %}
+          <input style="width: 160px; height:47px; border-color: green text-black border-11px solid" placeholder="Chercher reservation"  type="number" aria-label="search" id="tel" name="tel" required>
+          
+          <button class= "btn btn-outline-success text-black border-success solid green background-color-green" type="submit"> Chercher </button>
+        </form> </center>
+    </div>
+    <div class="col-sm"> </div>
+    <div class="col-sm"> </div>
+    
+  </div>  
+
+
+  
+
+<!-- partial:index.partial.html -->
+<div class="row">
+    
+<section class="container table-container">
+ 
+
+  <table class="cd-table order-table table">
+    <thead>
+      <tr>
+        <th>Client</th>
+        <th>Tel</th>
+        <th>Salle</th>
+        <th>Table</th>
+        <th>Type-Salle</th>
+        <th>Type-Table</th>
+        <th>Date-Reservation-salle</th>
+        <th>Date-Reservation-table</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+
+    <tbody>
+     
+      {% for s in salle %}
+      {% for t in table %}
+      {% if s.client.tel == t.client.tel %}
+      <tr> 
+        <td>{{s.client.nom}} {{s.client.prenom}}</td>
+        <td>{{s.client.tel}}</td>
+        <td>{{s.salle.numero}}</td>
+        <td>{{t.table.numero}}</td>
+        <td>{{s.salle.type}}</td>
+        <td>{{t.table.type}}</td>
+        <td>{{s.date_reservation}}</td>
+        <td>{{t.date_reservation}}</td>
+
+        <td>
+            <a class="text-danger" href="/supprimer_reservation_salle_table/{{s.id}}/{{t.id}}/" ><i class="fas fa-trash-alt"></i></a>  
+        <a href="#"  class="btn btn-outline-success border-success" style="width: 100px; height:41px"> imprimer </a> </td>
+        </tr>
+       
+      
+        {% endif %}
+        {% endfor %}
+        {%endfor%}
+     
+    </tbody>
+  </table>
+
+</div>
+
+</section>
+<!-- partial -->
+ </main>
+ 
+  
+<!-- Table Search JS -->
+  
+  </body>
+</html>
+
+{% endblock %}

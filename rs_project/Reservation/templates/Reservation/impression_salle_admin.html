@@ -1,0 +1,31 @@
+{% extends 'Reservation/main.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+
+
+
+<main>
+  
+    <!-- partial:index.partial.html -->
+    <section class="container cd-table-container">
+    
+     <center> <h4><div class="card border-success  p-3" style="width: 283px;"> vous avez réservé avec </div> <button type="button" class="btn btn-labeled btn-success">
+      <span class="btn-label"><i class="fa fa-check"></i></span>Succès</button> pour le client {{t.client.nom}} </h3>  </center>
+    </section>
+    <main>
+    <!-- partial -->
+    <section class="container cd-table-container">
+     
+      <center><h4 ><div class="card border-success p-3  " style="width: 290px"  > imprimer le billet ou le ticket de réservation  <h1> <div class="card border-success p-3  " style="width: 240px"  ><center> <a class="btn btn-outline-success text-black border-4px solid green mt-auto align-self-start" href="/Billet_salle/{{idd}}/">Imprimer Maintenant</a></div></h1></h3> </center>
+       
+     </section>
+    </main>
+     <section class="container cd-table-container">
+        
+      <center><h3> <h1> <div class="card border-success p-3  " style="width: 159px"  ><center> <a class="btn btn-outline-success text-black border-4px solid green mt-auto align-self-start" href="{% url 'reservation_salle' %}">Retourner</a></h1></h3> </center>
+       
+     </section>
+     </main>
+    
+     {% endblock %}

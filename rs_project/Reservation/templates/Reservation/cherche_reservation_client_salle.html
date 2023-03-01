@@ -1,0 +1,142 @@
+{% extends 'Reservation/mainClient.html' %}
+{% block content%}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Client</title>
+    
+	<!-- Demo CSS -->
+	<link rel="stylesheet" href="{% static 'table/css/demo.css' %}">
+      
+<style>
+.cd-table-container{
+  background: #fff;
+  box-shadow: 1px 2px 26px rgba(0, 0, 0, 0.2);
+  padding: 15px;
+  max-width: 720px;
+}
+/* Table Design */
+.cd-table{
+  width: 100%;
+  color: #666;
+  margin: 10px auto;
+  border-collapse: collapse;
+}
+
+.cd-table tr,
+.cd-table td{
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+.cd-table th{
+  background: #017721;
+  color: #fff;
+  padding: 10px;
+}
+
+/* Search Box */
+.cd-search{
+  padding: 10px;
+  border: 1px solid #ccc;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Search Title */
+.cd-title{
+  color: #666;
+  margin: 15px 0;
+}
+</style>
+  
+  </head>
+  <body>
+  
+    {% if msg == 1  %}
+   
+      <center> 
+        <div class="jumbotron">
+       
+                  <div class="col-md-3">
+                      <div class="card border-success mx-sm-1 p-3">
+                          <div class="card border-success shadow text-success p-3 my-card" > <h4> Bienvenue !</h4> </div>
+                          <div class="text-success text-center mt-3"><h5> {{client.nom}} {{client.prenom}}  </h4></div>
+                          <div class="text-info text-center mt-2"><h1> </h1></div>
+                      </div>
+                  </div>
+                </div>
+              
+        </center>
+        <main>
+      <!-- partial:index.partial.html -->
+      <section class="container cd-table-container">
+     <center>   <div class="card border-success mx-sm-1 p-3 "  style="width: 560px;">
+                        
+      <center> <h5> <div class="text-success text-center mt-3" > Votre reservation a <span class="badge bg-success"> {{date.date_reservation}} </span>  </div> </h4> </center>
+      </div>
+    </section>
+    <section class="container cd-table-container" >
+   <center> <div class="card border-success mx-sm-1 p-3" style="width: 560px;">
+        <center> <h5> <div class="text-success text-center mt-3" > Vous avez  reserver  la salle numero <span class="badge bg-success">{{salle.salle.numero}}</span> </div> </h4> </center>
+      </div>
+      <section class="container cd-table-container" >
+        <form action="/Billet_salle/{{iddd}}/" method="post">
+      <a href="/Billet_salle/{{iddd}}/" class="btn btn-outline-success text-success border-success"> Imprimer le ticket </a>
+    </form>  
+    </section>
+      <section class="container cd-table-container" >
+        <a href="/vos_reservation_salle" class="btn btn-outline-success text-success border-success"> Retourner </a>
+        </section>
+      <!-- partial -->
+       </main>
+  
+
+{% endif  %}
+
+
+  
+{% if msg == "ne existe pas" %}
+
+<main>
+  <!-- partial:index.partial.html -->
+  <section class="container cd-table-container">
+    <h1> {{salle.numero}}</h1>
+    <h1> {{client.nom}}</h1>
+   <center> <h3> <span class="badge bg-danger"> Desole !! </span> </center></h3>
+   <center> <h3> <span class="badge bg-danger"> il n'ya pas de réservation  pour vos numero !! </span> </h3>  </center>
+  </section>
+  <!-- partial -->
+  <section class="container cd-table-container">
+   
+    <center><h3><span class="badge bg-success"> Mais vous pouvez  </span><h1>  <a class="btn btn-outline-success text-black border-success solid green mt-auto align-self-start" href="{% url 'reservation_client' %}">Reserver Maintenant</a></h1></h3> </center>
+     
+   </section>
+   <section class="container cd-table-container">
+   
+    <center><h3> <h1>  <a class="btn btn-outline-success text-black border-success solid green mt-auto align-self-start" href="{% url 'vos_reservation_salle' %}">Retourner</a></h1></h3> </center>
+     
+   </section>
+   </main>
+  
+{% endif %}
+<main>
+  <!-- partial:index.partial.html -->
+  
+  <!-- partial -->
+   </main>
+
+
+
+
+
+ 
+  
+<!-- Table Search JS -->
+  
+  </body>
+</html>
+
+{% endblock %}

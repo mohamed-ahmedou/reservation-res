@@ -1,0 +1,118 @@
+{% extends 'Reservation/main.html' %}
+{% block content %}
+{% load static %}
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+
+<!------ Include the above in your HEAD tag ---------->
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css
+">
+
+<div class="jumbotron">
+<div class="row w-100">
+        <div class="col-md-3">
+            <div class="card border-info mx-sm-1 p-3">
+                <div class="card border-info shadow text-info p-3 my-card" > <img src="{% static '/img _reservation/res21.png' %}" alt="" width="20" height="20" class="d-inline-block align-text-top">
+                </div>
+                <div class="text-info text-center mt-3"><h4>Reservations</h4></div>
+                <div class="text-info text-center mt-2"><h1> {{totale_reservations}}</h1></div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card border-success mx-sm-1 p-3">
+                <div class="card border-success shadow text-success p-3 my-card"><img src="{% static '/img _reservation/res23.png' %}" alt="" width="20" height="20" class="d-inline-block align-text-top">
+                </div>
+                <div class="text-success text-center mt-3"><h4> Salles</h4></div>
+                <div class="text-success text-center mt-2"><h1>{{nb_salle}}</h1></div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card border-danger mx-sm-1 p-3">
+                <div class="card border-danger shadow text-danger p-3 my-card" ><img src="{% static '/img _reservation/res22.png' %}" alt="" width="20" height="20" class="d-inline-block align-text-top">
+                </div>
+                <div class="text-danger text-center mt-3"><h4>Tables</h4></div>
+                <div class="text-danger text-center mt-2"><h1>{{nb_table}}</h1></div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card border-warning mx-sm-1 p-3">
+                <div class="card border-warning shadow text-warning p-3 my-card" ><span class="fa fa-user" aria-hidden="true"></span></div>
+                <div class="text-warning text-center mt-3"><h4>Clients</h4></div>
+                <div class="text-warning text-center mt-2"><h1>{{nb_client}}</h1></div>
+            </div>
+        </div>
+     </div>
+</div>
+<center>
+ <div class="row">
+   <div class="col-sm-3">
+    <div class="card border-info mx-sm-1 p-1">
+      <div class="text-info text-center mt-1"><h6> Resevation</h6></div>
+   </div>
+   </div>
+   <div class="col-sm-3">
+    <div class="card border-success mx-sm-1 p-1">
+      <div class="text-success text-center mt-1"><h6>Salle(s) reserver {{nb_reservation_salle}}</h6></div>
+   </div>
+   </div> <div class="col-sm-3">
+    <div class="card border-danger mx-sm-1 p-1">
+      <div class="text-danger text-center mt-1"><h6>Table(s) reserver : {{nb_reservation_table}}</h6></div>
+   </div>
+   </div>
+
+   <div class="col-sm-3">
+    <div class="card border-warning mx-sm-1 p-1">
+      <div class="text-warning text-center mt-1"><h6>Dates Reservations {{resrevation_table.date_reservation}} </h6></div>
+   </div>
+   </div>
+
+ <div class="row">
+  <div class="col-sm-3">
+    <div class="card border-info mx-sm-1 p-1">
+      <div class="text-info text-center "><h6>Reservation tables : {{nb_reservation_table}} </h6></div>
+   </div>
+   </div>
+  <div class="col-sm-3">
+    <div class="card border-success mx-sm-1 p-1">
+      <div class="text-success text-center mt-1"><h6> Salle(s) non reserver {{nb_salle_non_reserver}}</h6></div>
+   </div>
+   </div>
+   <div class="col-sm-3">
+    <div class="card border-danger mx-sm-1 p-1">
+      <div class="text-danger text-center mt-1"><h6>Table(s) non reserver : {{nb_table_non_reserver}}</h6></div>
+   </div>
+   </div>
+   <div class="col-sm-3">
+    <div class="card border-warning mx-sm-1 p-1">
+      <div class="text-warning text-center mt-1"><h6>Date non Disponible</h6></div>
+   </div>
+   </div>
+
+ <div class="row">
+  <div class="col-sm-3">
+    <div class="card border-info mx-sm-1 p-1">
+      <div class="text-info text-center mt-1"><h6>Reservation salles : {{nb_reservation_salle}}</h6></div>
+   </div>
+   </div>
+   <div class="col-sm-3">
+    <div class="card border-success mx-sm-1 p-1">
+      <div class="text-success text-center mt-1"><h6> Salle(s) Disponible : {{nb_salle_non_reserver}}</h6></div>
+   </div>
+   </div>
+
+  <div class="col-sm-3">
+    <div class="card border-danger mx-sm-1 p-1">
+      <div class="text-danger text-center mt-1"><h6>Table(s) Disponible {{nb_table_non_reserver}}</h6></div>
+   </div>
+   </div>
+   <div class="col-sm-3">
+    <div class="card border-warning mx-sm-1 p-1">
+      <div class="text-warning text-center mt-1"><h6>Date Disponible </h6></div>
+   </div>
+   </div>
+
+</div>
+</center>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>   
+{% endblock %}

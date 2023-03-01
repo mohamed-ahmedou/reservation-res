@@ -1,0 +1,218 @@
+{% extends 'Reservation/mainClient.html' %}
+{% block content %}
+{% load static %}
+
+    <html lang="en">
+      <head>
+        
+        <title>Reservation  dans le restaurant </title>
+        
+        <!-- Style CSS -->
+        <link rel="stylesheet" href="{% static '/cardHorizontale/css/style.css '%}">
+        <!-- Demo CSS (No need to include it into your project) -->
+        <link rel="stylesheet" href="{% static '/cardHorizontale/css/demo.css '%}">
+     
+      </head>
+      <body>
+
+    <main>
+      
+         <!-- le card -->
+    <div class="grids">
+
+         <!--------------------- card numero un 1----------------------------->
+          <div class="card-one">
+            <div class="card">
+           <!---->   <div class="card__side card__side--front" id="front-1">
+     <a href="{% url 'reservation_client' %}" > <img src="{% static '/img _reservation/res11.jpg' %}" alt="" width="890"  height="250" >
+        </a>
+                <div class="text-box">
+                  <h3 class="text-box-top"></h3>
+<a href="{%  url  'reservation_client' %}"  class="btn btn-outline-success text-white mt-auto align-self-start"> <h1 class="text-box-middle"> Reservez </h1></a>
+                     
+                  <h3 class="text-box-lower">--- Maintenant  ---</h3>
+                </div>
+              </div>
+              <div class="card__side card__side--back" id="back-1">
+
+                <div class="text-box">
+                  <h3 class="text-box-top"></h3>
+                  <a href="{%  url  'reservation_client' %}" class="site-logo"> <h1 class="text-box-middle"> Reservez </h1></a>
+  
+                  <h3 class="text-box-lower">--- Maintenant ---</h3>
+                </div>
+              </div>
+            </div>
+          </div>
+
+     <!--------card numero 2------>
+
+          <div class="card-two">
+            <div class="card">
+              <div class="card__side card__side--front" id="front-2">
+                <a href="{% url 'reservation_client' %}" > <img src="{% static '/img _reservation/res12.jpg' %}" alt="" width="430"  height="250" >
+                </a>
+                <div class="text-box">
+                  
+        <a href="{%  url  'reservation_client' %}" class="site-logo"> <h5 class="text-box-middle"> Reservez </h5></a>
+  
+                  <h2 class="text-box-lower" >--- Maintenant  ---</h2>
+                </div>
+              </div>
+              <div class="card__side card__side--back" id="back-2">
+                
+                <div class="text-box">
+                  
+                  <a href="{%  url  'reservation_client' %}" class="site-logo"> <h1 class="text-box-middle"> Reservez </h1></a>
+  
+                  <h3 class="text-box-lower">--- Maintenant ---</h3>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!--------------------- card numero trois 3-------------------------->
+          <div class="card-three">
+            <div class="card">
+              <div class="card__side card__side--front" id="front-3">
+            <a href="{% url 'reservation_client' %}" > <img src="{% static '/img _reservation/res10.jpg' %}" alt="" width="430"  height="250" >
+                </a>
+                <div class="text-box">
+           
+<     <a href="{%  url  'reservation_client' %}" class="site-logo"> <h1 class="text-box-middle"> Reservez </h1></a>
+ 
+                  <h3 class="text-box-lower">--- Maintenant ---</h3>
+                </div>
+              </div>
+              <div class="card__side card__side--back" id="back-3">
+               
+                <div class="text-box">
+                  
+
+                    <a href="{%  url  'reservation_client' %}" class="site-logo"> <h1 class="text-box-middle"> Reservez </h1></a>
+ 
+                  <h3 class="text-box-lower">--- Maintenant ---</h3>
+                </div>
+              </div>
+            </div>   
+          </div>      
+          
+        <!--------------------- card numero quatre 4---------------------------->
+
+          <div class="card-four">
+            <div class="card">
+              <div class="card__side card__side--front" id="front-4">
+                <a href="{% url 'reservation_client' %}" > <img src="{% static '/img _reservation/res8.jpg' %}" alt="" width="430"  height="250" >
+                </a>
+                <div class="text-box"> 
+                  <h3 class="text-box-top">  </h3>
+<a href="{%  url  'reservation_client' %}" class="site-logo"> <h1 class="text-box-middle"> Reservez </h1></a>
+ 
+                  <h3 class="text-box-lower">--- Maintenant ---</h3>
+                </div>
+              </div>
+              <div class="card__side card__side--back" id="back-4">
+                <a href="{% url 'reservation_client' %}" > <img src="{% static '/img _reservation/res7.jpg' %}" alt="" width="430"  height="250" >
+                     
+                <div class="text-box">
+                  <h3 class="text-box-top">  </h3>
+    <a href="{%  url  'reservation_client' %}" class="site-logo"> <h1 class="text-box-middle"> Reservez </h1></a>
+ 
+                  <h3 class="text-box-lower">--- Maintenant ---</h3>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        <!--------------------- card numero cinq 5---------------------------->
+          <div class="card-five">
+            <div class="card">
+              <div class="card__side card__side--front" id="front-5">
+               
+                <div class="text-box">
+                  
+        <a href="{%  url  'reservation_client' %}" class="site-logo"> <h1 class="text-box-middle"> Reservez </h1></a>
+ 
+                  <h3 class="text-box-lower">--- Maintenant ---</h3>
+                </div>
+              </div>
+              <div class="card__side card__side--back" id="back-5">
+                <a href="{% url 'reservation_client' %}" > <img src="{% static '/img _reservation/res15.jpg' %}" alt="" width="430"  height="250" >
+                          
+                <div class="text-box">
+               
+                    <a href="{%  url  'reservation_client' %}" class="site-logo"> <h1 class="text-box-middle"> Reservez </h1></a>
+ 
+                  <h3 class="text-box-lower">--- Maintenant ---</h3>
+                </div>
+              </div>
+            </div>
+          </div>
+
+         <!--------------------- card numero six 6---------------------------->
+
+          <div class="card-six">
+            <div class="card">
+              <div class="card__side card__side--front" id="front-6">
+                <a href="{% url 'reservation_client' %}" > <img src="{% static '/img _reservation/res12.jpg' %}" alt="" width="430"  height="250" >
+               
+                <div class="text-box">
+                               
+                  <a href="{%  url  'reservation_client' %}" class="site-logo"> <h2 class="text-box-middle"> Reservez</h2></a>
+ 
+      
+                  <h3 class="text-box-lower">--- Maintenant ---</h3>
+                </div>
+              </div>
+              <div class="card__side card__side--back" id="back-6">
+                <a href="{% url 'reservation_client' %}" > <img src="{% static '/img _reservation/res14.jpg' %}" alt="" width="430"  height="250" >
+               
+                <div class="text-box">
+                  
+                  <a href="{%  url  'reservation_client' %}" class="site-logo"> <h1 class="text-box-middle"> Reservez </h1></a>
+ 
+                  <h3 class="text-box-lower">--- Maintenant ---</h3>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          
+ <!--------------------- card numero sept 7---------------------------->
+
+          <div class="card-seven">
+            <div class="card">
+              <div class="card__side card__side--front" id="front-7">
+                <div class="text-box">
+                  
+                  <a href="{%  url  'reservation_client' %}" class="site-logo"> <h1 class="text-box-middle"> Reservez </h1></a>
+ 
+                  <h3 class="text-box-lower">--- Maintenant ---</h3>
+                </div>
+              </div>
+              <div class="card__side card__side--back" id="back-7">
+              
+                <div class="text-box">
+                  
+                  <a href="{%  url  'reservation_client' %}" class="site-logo"> <h1 class="text-box-middle"> Reservez </h1></a>
+ 
+                  <h3 class="text-box-lower">--- Maintenant ---</h3>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>  
+         <!-- fin-->
+     </main>
+     
+          
+      <footer class="credit">Par:   KHADI, MEYMOUNE, HINDOU </footer>
+ <!-- Card Flip Js -->
+    <script src="{% static 'cardHorizontale/js/script.js' %}"></script>
+          
+      </body>
+    </html>
+
+
+      
+{% endblock %}

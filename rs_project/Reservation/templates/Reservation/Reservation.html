@@ -1,0 +1,45 @@
+{% extends 'Reservation/main.html' %}
+{% block content %}
+{% load static %}
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+
+<!------ Include the above in your HEAD tag ---------->
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css
+">
+
+<div class="jumbotron">
+  <center>
+        
+       <div class="row">
+        <div class="col-sm">
+          <div class="card border-success mx-sm-1 p-3">
+              <div class="card border-success shadow text-success p-3 my-card"><center><img src="{% static '/img _reservation/res23.png' %}" alt="" width="20" height="20" class="d-inline-block align-text-top">
+              </div>
+              <div class="text-success text-center mt-3"> <a href="{% url 'reservation_salle' %}" class="btn btn-outline success text-black border-success">Reservations Salles</a> </div>
+              
+              <div class="text-success text-center mt-2"><h1>{{nb_salle}}</h1></div>
+          </div>
+        </div>  
+         
+        
+        <div class="col-sm">
+          <div class="card border-success mx-sm-1 p-3">
+              <div class="card border-success shadow text-success p-3 my-card"><center><img src="{% static '/img _reservation/res22.png' %}" alt="" width="20" height="20" class="d-inline-block align-text-top">
+              </div>
+              <div class="text-success text-center mt-3"> <a href="{% url 'reservation_table' %}" class="btn btn-outline success text-black border-success">Reservations Tables</a> </div>
+              
+              <div class="text-success text-center mt-2"><h1>{{nb_salle}}</h1></div>
+          </div>
+        </div>
+
+      
+    </div>
+  </div>
+
+
+ 
+</center>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>   
+{% endblock %}

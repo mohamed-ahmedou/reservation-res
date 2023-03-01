@@ -1,0 +1,143 @@
+{% extends 'Reservation/main.html' %}
+{% block content%}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Client</title>
+    
+	<!-- Demo CSS -->
+	<link rel="stylesheet" href="{% static 'table/css/demo.css' %}">
+      
+<style>
+.cd-table-container{
+  background: #fff;
+  box-shadow: 1px 2px 26px rgba(0, 0, 0, 0.2);
+  padding: 15px;
+  max-width: 720px;
+}
+/* Table Design */
+.cd-table{
+  width: 100%;
+  color: #666;
+  margin: 10px auto;
+  border-collapse: collapse;
+}
+
+.cd-table tr,
+.cd-table td{
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+.cd-table th{
+  background: #017721;
+  color: #fff;
+  padding: 10px;
+}
+
+/* Search Box */
+.cd-search{
+  padding: 10px;
+  border: 1px solid #ccc;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Search Title */
+.cd-title{
+  color: #666;
+  margin: 15px 0;
+}
+</style>
+  
+  </head>
+  <body>
+<h4><center>  Reservation salle  </center></h4>
+  
+ <main>
+  <center>
+  <div class="row" >
+    <div class="col-sm">
+    </div>
+    <div class="col-sm">
+    <center>
+    <h6 class=""><a class="btn btn-outline-success text-black border-success solid green mt-auto align-self-start" href="{% url 'ajout_reservation_table' %}">Ajouter une reservation table</a></h6>
+    </center>
+  </div>
+  <div class="col-sm">
+    <center>
+     
+        <form class="d-flex ml-3" method="POST" action="{% url 'rechercher_reservation_table'%}" >
+          {% csrf_token %}
+          <input style="width: 160px; height:47px; border-color: green text-black border-11px solid" placeholder="Chercher reservation"  type="number" aria-label="search"id="tel" name="tel" required>
+          
+          <button class= "btn btn-outline-success text-black border-4px solid green background-color-green" type="submit"> Chercher </button>
+        </form> </center>
+  </div>
+  <div class="col-sm"> </div>
+</div>
+<!-- partial:index.partial.html -->
+<div class="row">
+  
+<section class="container cd-table-container">
+  <div class="card mb-4">
+    <div class="card-body">
+        TABLE
+    </div>
+</div>
+  <div class="card mb-4">
+    <div class="card-header">
+        <i class="fas fa-table me-1"></i>
+        Information sur les tables
+    </div>
+    <div class="card-body">
+        <table  class="table table-hover">
+
+    <thead>
+      <tr>
+        <th>Client</th>
+        <th>Tel</th>
+        <th>Table</th>
+        <th>Type</th>
+        <th>Date </th>
+        <th>Action</th>
+        
+      </tr>
+    </thead>
+
+    <tbody>
+   
+      <tr>
+       
+        <td>{{client.nom}} {{client.prenom}}</td>
+        <td> {{client.tel}}</td>
+        <td>{{table.table.numero}}</td>
+        <td>{{table.table.type}}</td>
+        <td>{{table.date_reservation}}</td>
+       <td><a  href="#" > <i class="fas fa-edit"></i></a> 
+          <a class="text-danger" href="/supprimer_reservation_table/{{idd}}/" ><i class="fas fa-trash-alt"></i></a> 
+          <a href="/Billet_table/{{idd}}/"  class="btn btn-outline-success border-success" style="width: 100px; height:41px"> imprimer </a> </td>
+  
+           
+        </tr>
+      
+
+     
+    </tbody>
+  </table>
+
+</div>
+
+</section>
+<!-- partial -->
+ </main>
+ 
+  
+<!-- Table Search JS -->
+  
+  </body>
+</html>
+
+{% endblock %}
