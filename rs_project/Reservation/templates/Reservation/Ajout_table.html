@@ -101,7 +101,7 @@ h2{
     <h4> Ajouter une table </h4>
     <div class="form-control">
         <label for="numero">Numero</label>
-        <input type="text" name ="numero" id="numero" placeholder="Ajouter le numero" required>
+        <input type="number" name ="numero" id="numero" placeholder="Ajouter le numero" required>
         
     </div>
     
@@ -121,6 +121,12 @@ h2{
             {% endfor %}
         </select>
     </div> 
+    <div> 
+        
+        <h4 style="color:red">{{msg}}</h4>
+    
+    </div>
+   
    
     <button class="btn btn-outline-success ">Ajouter</button>
 </form>

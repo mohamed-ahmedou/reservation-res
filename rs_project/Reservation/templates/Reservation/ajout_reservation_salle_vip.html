@@ -96,7 +96,7 @@ h2{
  box-shadow: 0 2px 10px rgba(0,0,0,0.3);
  width: 400px;
  margin: 10px auto;">
-        <form id="form" class="form" method="post" action="{% url 'ajout_reservation_table_client' %}">
+        <form id="form" class="form" method="post" action="{% url 'ajout_vip_salle' %}">
             {% csrf_token %}
             <h4> Saisisser votre information </h4>
             <div class="form-control">
@@ -122,8 +122,8 @@ h2{
             </div>
             
                 <div class="form-control">
-                <label for="nombre_place">Nombre de Place</label>
-                <input type="number" name="nombre_place" id="nombre_place" placeholder="Entrer le nombre de place" min="1" max="10" required>
+                <label for="nombre_table">Nombre de Table</label>
+                <input type="number" name="nombre_table" id="nombre_table" placeholder="Entrer le nombre de table" min="1" max="60" required>
                 <small>Error Message</small>
             </div>
         
@@ -137,11 +137,9 @@ h2{
                 <select name="type_evenement" class="form-control" required>
                     
                     <option value="diner_vip"> diner_vip </option>
-                    <option value="diner_Normal"> diner_Normal </option>
                     <option value="Conference"> Conference </option>
                     <option value="Festival"> Festival </option>
                     <option value="Mariage"> Mariage </option>
-                    <option value="Fiancailles"> Fiancailles </option>
                     <option value="autre"> autre </option>
 
 
@@ -149,17 +147,16 @@ h2{
                   </select>
             </div>
             <div class="form-control">
-                <label for="table">Choisissez le type de table</label>
+                <label for="table">le type de salle</label>
                 <select name="idd" class="form-control" required>
                     <option value="Vip"> Vip </option>
-                    <option value="Normal"> Normal </option>
                   </select>
             </div>
             <div class="form-control">
-                <label for="table">Choisissez le numero de table</label>
+                <label for="table">Choisissez  salle</label>
                 <select name="idd" class="form-control" required>
-                    {% for i in tables %}
-                    <option value="{{i.id}}"> {{i.numero}} </option>
+                    {% for i in salles %}
+                    <option value="{{i.id}}"> Salle {{i.numero}} </option>
                     {% endfor %}
                   </select>
             </div>

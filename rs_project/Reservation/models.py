@@ -3,6 +3,7 @@ from django.db import models
 from django.core.validators import RegexValidator
 from django.contrib.auth.models import User
 # Create your models here.
+from django.core.validators import MaxValueValidator, MinValueValidator
 
 class Client(models.Model):
     nom = models.CharField(max_length=50)
@@ -46,18 +47,41 @@ class Table(models.Model):
         return f"{self.numero} {self.type}"
     
 class Reservation_table(models.Model):
+    Evenement_TYPE_table = (
+        ('diner_vip', 'diner_vip'),
+        ('diner_Normal', 'diner_Normal'),
+        ('Conference', 'Conference'),
+        ('Festival', 'Festival'),
+        ('Mariage', 'Mariage'),
+        ('autre', 'autre')
+    )
     client = models.ForeignKey(Client, on_delete=models.CASCADE)
     table = models.ForeignKey(Table,  on_delete=models.CASCADE)
     date_reservation = models.DateTimeField()
     disponiblité = models.BooleanField(default=True)
+    nombre_place = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(10)],default=1)
+    type_evenement = models.CharField(max_length=50, choices=Evenement_TYPE_table)
+    
     
     def __str__(self):
        return f"{self.client.nom} {self.client.prenom} a reserver la table numero {self.table.numero} dans la salle numero {self.table.salle.numero}, date de reservation: {self.date_reservation}"
   
 class Reservation_salle(models.Model):
+    Evenement_TYPE_salle = (
+        ('diner_vip', 'diner_vip'),
+        ('diner_Normal', 'diner_Normal'),
+        ('Conference', 'Conference'),
+        ('Festival', 'Festival'),
+        ('Mariage', 'Mariage'),
+        ('autre', 'autre')
+
+    )
     client = models.ForeignKey(Client,  on_delete=models.CASCADE)
     salle = models.ForeignKey(Salle, on_delete=models.CASCADE)
+    nombre_place = models.IntegerField
     date_reservation = models.DateTimeField()
+    nombre_table = models.IntegerField(default=10)
+    type_evenement = models.CharField(max_length=50, choices=Evenement_TYPE_salle)
     
     def __str__(self):
             return f"{self.client.nom} {self.client.prenom} a reserver la salle numero {self.salle.numero}, date de reservation: {self.date_reservation}"

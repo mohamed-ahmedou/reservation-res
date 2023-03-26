@@ -25,7 +25,12 @@ from django.contrib import messages
 ##-------------------------------------------------------------Fonction admin ou agent-----------------------------------------------------------------
 
 
+def choix_table(request):
+    return render(request , 'Reservation/ChoissizeTableType.html')
 
+def choix_salle(request):
+    return render(request , 'Reservation/Choisissez_type_salle.html')
+    
 
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------
 #--------------------------------------------------------------- Fonction Navbar---------------------------------------------------------------------------
@@ -83,7 +88,7 @@ def userLogin(request):
              login(request, user)
              return redirect('home')
             else:
-                messages.info(request, 'Erreur dinformation')
+                messages.info(request, "Erreur d'information")
     
         context = {}
 
@@ -192,11 +197,9 @@ def salle(request):
         for s in res_salle:
             n = s.salle.id
             print(n)
-                
         reservation = {'salle':salle,
                     'res_salle' : res_salle,
-                    'n' : n,
-                    's' : s,
+                    
                     'Reserver' : "Reserver",
                     'Non_Reserver' : "Non Reserver"}
         return render(request, 'Reservation/Salle.html',reservation) 
@@ -214,11 +217,8 @@ def table(request):
             l = k.table.id
             print(l)
         context = {'table':table,
-                'res_table' : res_table,
-                'k' : k,
-                'l' :  l,
-                'Reserver' : "Reserver",
-                'Non_Reserver' : "Non_Reserver",
+                
+               
                 }
         return render(request, 'Reservation/Table.html',context) 
 
@@ -286,6 +286,21 @@ def ajout_table(request):
             type = request.POST['type']
             iddd = request.POST['idd']
             salle = Salle.objects.get(id=iddd)
+            numero_exist = Table.objects.filter(numero=numero).exists()
+            print('type de tables est: ',type)
+            print('type de salle est: ',salle.type)
+            print("le numero est : ", numero)
+            print("le numero exist est : ", numero_exist)
+            if type != salle.type:
+            #    return render (request, )
+               msg = "Erreur , Table Vip doit etre ajouter dans Salle Vip!"
+               salles = Salle.objects.all()
+               return render(request, "Reservation/ajout_table.html", {"msg":msg,'salles' : salles})
+            elif numero_exist:
+               msg = "Erreur , Table Exist deja"
+               salles = Salle.objects.all()
+               return render(request, "Reservation/ajout_table.html", {"msg":msg,'salles' : salles})
+                
             c = Table.objects.create(numero=numero, type=type, salle=salle )
             c.save()
             return redirect("/table")
@@ -400,8 +415,8 @@ def modifier_table(request, myid):
             t.save()
             print(t.numero)
             return redirect("/table")
-            s = Salle.objects.all() 
-            return render(request, 'Reservation/Modifier_table.html',{'s' : s, 't' : t})
+    s = Salle.objects.all() 
+    return render(request, 'Reservation/Modifier_table.html',{'s' : s, 't' : t})
 
 
 #-----------------------------------------------modifier reservation-salle-----------------------------#--
@@ -778,23 +793,25 @@ def contactez_nous(request):
 
     
 #-------------------------------------------------------------ajout reservation table client ----------------------------------
-
-
-def ajout_reservation_table_client(request):
+def vip(request):
+    return render(request, 'Reservation/ajout_reservation_vip')
+def ajout_vip_table(request):
     if request.method=="POST":   
         nom = request.POST['nom']
         prenom = request.POST['prenom']
         tel = request.POST['tel']
         email = request.POST['email']
+        nombre_place = request.POST['nombre_place']
+        type_evenement = request.POST['type_evenement'] 
         iddd = request.POST['idd']
         date_reservation = request.POST['date_reservation']
         try:
-            
+                
            table = Table.objects.get(id=iddd)
-        
+           
            if date_reservation  != Reservation_table.date_reservation :
               client = Client.objects.create(nom=nom, prenom=prenom, tel=tel, email=email)
-              r = Reservation_table.objects.create(client = client, table=table, date_reservation = date_reservation )
+              r = Reservation_table.objects.create(client = client, table=table, date_reservation = date_reservation , nombre_place=nombre_place, type_evenement=type_evenement)
               client.save()
               r.save() 
               idd = r.id
@@ -803,7 +820,117 @@ def ajout_reservation_table_client(request):
               return render(request, 'Reservation/Salle.html')  
         except:
             res = {'msg' : 1}
-            return render(request, 'Reservation/Salle.html',{'res' : res})  
+            return render(request, 'Reservation/Salle.html',{'res' : res})
+      
+    tables = Table.objects.filter(type="VIP")
+    return render(request,'Reservation/ajout_reservation_vip.html',{'tables' : tables} )
+
+def ajout_normal_table(request):
+    if request.method=="POST":   
+        nom = request.POST['nom']
+        prenom = request.POST['prenom']
+        tel = request.POST['tel']
+        email = request.POST['email']
+        nombre_place = request.POST['nombre_place']
+        type_evenement = request.POST['type_evenement'] 
+        iddd = request.POST['idd']
+        date_reservation = request.POST['date_reservation']
+        try:
+                
+           table = Table.objects.get(id=iddd)
+           
+           if date_reservation  != Reservation_table.date_reservation :
+              client = Client.objects.create(nom=nom, prenom=prenom, tel=tel, email=email)
+              r = Reservation_table.objects.create(client = client, table=table, date_reservation = date_reservation , nombre_place=nombre_place, type_evenement=type_evenement)
+              client.save()
+              r.save() 
+              idd = r.id
+              return render(request, 'Reservation/impression_table.html',{'idd': idd}) 
+           else:
+              return render(request, 'Reservation/Salle.html')  
+        except:
+            res = {'msg' : 1}
+            return render(request, 'Reservation/Salle.html',{'res' : res})
+      
+    tables = Table.objects.filter(type="NORMAL")
+    return render(request,'Reservation/ajout_reservation_normal.html',{'tables' : tables} )
+
+def ajout_vip_salle(request):
+    if request.method=="POST":   
+        nom = request.POST['nom']
+        prenom = request.POST['prenom']
+        tel = request.POST['tel']
+        email = request.POST['email']
+        iddd = request.POST['idd']
+        date_reservation = request.POST['date_reservation']
+        nombre_table = request.POST['nombre_table']
+        type_evenement = request.POST['type_evenement']
+        salle = Salle.objects.get(id=iddd)
+        client = Client.objects.create(nom=nom, prenom=prenom, tel=tel, email=email)
+        r = Reservation_salle.objects.create(client = client, salle=salle, 
+                                             date_reservation = date_reservation,
+                                             nombre_table=nombre_table,
+                                             type_evenement=type_evenement)
+        client.save()
+        r.save()
+        idd = r.id;
+        return render (request, 'Reservation/impression_salle.html', {'idd': idd}) 
+    salles = Salle.objects.filter(type="VIP")
+    return render(request, 'Reservation/ajout_reservation_salle_vip.html',{'salles':salles})
+
+def ajout_normal_salle(request):
+    if request.method=="POST":   
+        nom = request.POST['nom']
+        prenom = request.POST['prenom']
+        tel = request.POST['tel']
+        email = request.POST['email']
+        iddd = request.POST['idd']
+        date_reservation = request.POST['date_reservation']
+        nombre_table = request.POST['nombre_table']
+        type_evenement = request.POST['type_evenement']
+        salle = Salle.objects.get(id=iddd)
+        client = Client.objects.create(nom=nom, prenom=prenom, tel=tel, email=email)
+        r = Reservation_salle.objects.create(client = client, salle=salle,
+                                             nombre_table =nombre_table,
+                                             date_reservation = date_reservation,
+                                             type_evenement = type_evenement
+                                             )
+        client.save()
+        r.save()
+        idd = r.id;
+        return render (request, 'Reservation/impression_salle.html', {'idd': idd}) 
+    salles = Salle.objects.filter(type="NORMAL")
+    return render(request, 'Reservation/ajout_reservation_salle_normal.html',{'salles':salles})
+
+
+
+def ajout_reservation_table_client(request):
+    if request.method=="POST":   
+        nom = request.POST['nom']
+        prenom = request.POST['prenom']
+        tel = request.POST['tel']
+        email = request.POST['email']
+        nombre_place = request.POST['nombre_place']
+        type_evenement = request.POST['type_evenement'] 
+        iddd = request.POST['idd']
+        date_reservation = request.POST['date_reservation']
+        try:
+            
+           table = Table.objects.get(id=iddd)
+           
+           if date_reservation  != Reservation_table.date_reservation :
+              client = Client.objects.create(nom=nom, prenom=prenom, tel=tel, email=email)
+              r = Reservation_table.objects.create(client = client, table=table, date_reservation = date_reservation , nombre_place=nombre_place, type_evenement=type_evenement)
+              client.save()
+              r.save() 
+              idd = r.id
+              return render(request, 'Reservation/impression_table.html',{'idd': idd}) 
+           else:
+              return render(request, 'Reservation/Salle.html')  
+        except:
+            res = {'msg' : 1}
+            return render(request, 'Reservation/Salle.html',{'res' : res})
+      
     tables = Table.objects.all()
     return render(request,'Reservation/Ajout_reservation_table_Client.html',{'tables' : tables} )
 

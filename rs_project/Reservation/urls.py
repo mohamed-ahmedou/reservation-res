@@ -8,6 +8,16 @@ from django.urls import path
  
 
 urlpatterns = [
+    #nouveau
+    path('choix_table/', views.choix_table, name="choix_table"),
+    path('choix_salle/', views.choix_salle, name="choix_salle"),
+    path('vip/', views.vip, name="vip"),
+    path('ajout_vip_table/', views.ajout_vip_table, name="ajout_vip_table"),
+    path('ajout_normal_table/', views.ajout_normal_table, name="ajout_normal_table"),
+    
+    path('ajout_vip_salle/', views.ajout_vip_salle, name="ajout_vip_salle"),
+    path('ajout_normal_salle/', views.ajout_normal_salle, name="ajout_normal_salle"),
+    #nouveau
 
     path('login/' ,views.userLogin, name="login"),
     path('register/' ,views.register, name="register"),
