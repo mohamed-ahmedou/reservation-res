@@ -1,0 +1,104 @@
+{% extends 'Reservation/main.html' %}
+{% block content%}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Client</title>
+    
+	<!-- Demo CSS -->
+	<link rel="stylesheet" href="{% static 'table/css/demo.css' %}">
+      
+<style>
+.cd-table-container{
+  background: #fff;
+  box-shadow: 1px 2px 26px rgba(0, 0, 0, 0.2);
+  padding: 15px;
+  max-width: 720px;
+}
+/* Table Design */
+.cd-table{
+  width: 100%;
+  color: #666;
+  margin: 10px auto;
+  border-collapse: collapse;
+}
+
+.cd-table tr,
+.cd-table td{
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+.cd-table th{
+  background: #017721;
+  color: #fff;
+  padding: 10px;
+}
+
+/* Search Box */
+.cd-search{
+  padding: 10px;
+  border: 1px solid #ccc;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Search Title */
+.cd-title{
+  color: #666;
+  margin: 15px 0;
+}
+</style>
+  
+  </head>
+  <body>
+  
+   
+
+
+  
+
+
+<main>
+  <center> <div class="card border-success mx-sm-1 p-3" style="width :714px;"> <h3><div class="text-success text-center ">  Bienvenue! </h3></div> 
+  <!-- partial:index.partial.html -->
+    
+    
+    <center> <div class="card border-success mx-sm-1 p-3" style="width :714px;"> <h4><div class="text-black text-center "> Slvp Choisissez le type de table pour le client!   </h4></div> 
+      <center> <div class="card border-success mx-sm-1 p-3" style="width :714px;"> <h3><div class="text-black text-center ">  Les Tables Vip :  <center><h2>   <a style="margin-bottom:30px width:30px" width="100px" class="btn btn-outline-success text-success border-success" href="{% url 'ajout_vip_table_admin' %}">Table Vip</a></h2> </center></h3></div>
+      <center> <div class="card border-success mx-sm-1 p-3" style="width :714px;"> <h3><div class="text-black text-center ">  Les Tables Normal :  <center><h2>   <a style="margin-bottom:30px width:30px" width="100px" class="btn btn-outline-success text-success border-success" href="{% url 'ajout_normal_table_admin' %}">Table Normal</a></h2> </center></h3></div>
+                <center> <div class="card border-success mx-sm-1 p-3" style="width :714px;"> 
+                  
+              </p> </h3></div> 
+  
+            </section>
+  <!-- partial -->
+  
+   <section class="container cd-table-container">
+   
+    <center><h3> <h1>  <a class="btn btn-outline-success text-success border-success" href="{% url 'client_home' %}">Retourner</a></h1></h3> </center>
+     
+   </section>
+   </main>
+  
+
+<main>
+  <!-- partial:index.partial.html -->
+  
+  <!-- partial -->
+   </main>
+
+
+
+
+
+ 
+  
+<!-- Table Search JS -->
+  
+  </body>
+</html>
+
+{% endblock %}

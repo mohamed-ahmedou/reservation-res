@@ -30,6 +30,12 @@ def choix_table(request):
 
 def choix_salle(request):
     return render(request , 'Reservation/Choisissez_type_salle.html')
+# admin
+def choix_salle_admin(request):
+    return render(request , 'Reservation/Choisissez_type_salle_admin.html')
+def choix_table_admin(request):
+    return render(request , 'Reservation/Choisissez_type_table_admin.html')
+
     
 
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -313,7 +319,7 @@ def ajout_table(request):
 
 def ajout_reservation_salle(request):
     if not request.user.is_authenticated:
-        return redirect('login')
+        return redirect('/login')
     else:
         if request.method=="POST":   
             nom = request.POST['nom']
@@ -793,8 +799,7 @@ def contactez_nous(request):
 
     
 #-------------------------------------------------------------ajout reservation table client ----------------------------------
-def vip(request):
-    return render(request, 'Reservation/ajout_reservation_vip')
+
 def ajout_vip_table(request):
     if request.method=="POST":   
         nom = request.POST['nom']
@@ -824,6 +829,127 @@ def ajout_vip_table(request):
       
     tables = Table.objects.filter(type="VIP")
     return render(request,'Reservation/ajout_reservation_vip.html',{'tables' : tables} )
+
+def ajout_vip_table_admin(request):
+    if request.method=="POST":   
+        nom = request.POST['nom']
+        prenom = request.POST['prenom']
+        tel = request.POST['tel']
+        email = request.POST['email']
+        nombre_place = request.POST['nombre_place']
+        type_evenement = request.POST['type_evenement'] 
+        iddd = request.POST['idd']
+        date_reservation = request.POST['date_reservation']
+        try:
+                
+           table = Table.objects.get(id=iddd)
+           
+           if date_reservation  != Reservation_table.date_reservation :
+              client = Client.objects.create(nom=nom, prenom=prenom, tel=tel, email=email)
+              r = Reservation_table.objects.create(client = client, table=table, date_reservation = date_reservation , nombre_place=nombre_place, type_evenement=type_evenement)
+              client.save()
+              r.save() 
+              idd = r.id
+              return render(request, 'Reservation/impression_table_admin.html',{'idd': idd}) 
+           else:
+              return render(request, 'Reservation/Salle.html')  
+        except:
+            res = {'msg' : 1}
+            return render(request, 'Reservation/Salle.html',{'res' : res})
+      
+    tables = Table.objects.filter(type="VIP")
+    return render(request,'Reservation/ajout_reservation_vip_table_admin.html',{'tables' : tables} )
+
+def ajout_normal_table_admin(request):
+    if request.method=="POST":   
+        nom = request.POST['nom']
+        prenom = request.POST['prenom']
+        tel = request.POST['tel']
+        email = request.POST['email']
+        nombre_place = request.POST['nombre_place']
+        type_evenement = request.POST['type_evenement'] 
+        iddd = request.POST['idd']
+        date_reservation = request.POST['date_reservation']
+        try:
+                
+           table = Table.objects.get(id=iddd)
+           
+           if date_reservation  != Reservation_table.date_reservation :
+              client = Client.objects.create(nom=nom, prenom=prenom, tel=tel, email=email)
+              r = Reservation_table.objects.create(client = client, table=table, date_reservation = date_reservation , nombre_place=nombre_place, type_evenement=type_evenement)
+              client.save()
+              r.save() 
+              idd = r.id
+              return render(request, 'Reservation/impression_table_admin.html',{'idd': idd}) 
+           else:
+              return render(request, 'Reservation/Table.html')  
+        except:
+            res = {'msg' : 1}
+            return render(request, 'Reservation/Salle.html',{'res' : res})
+      
+    tables = Table.objects.filter(type="NORMAL")
+    return render(request,'Reservation/ajout_reservation_normal_table_admin.html',{'tables' : tables} )
+
+
+
+
+def ajout_vip_salle_admin(request):
+    if not request.user.is_authenticated:
+        return redirect('login')
+    else:
+        if request.method=="POST":   
+            nom = request.POST['nom']
+            prenom = request.POST['prenom']
+            tel = request.POST['tel']
+            email = request.POST['email']
+            iddd = request.POST['idd']
+            date_reservation = request.POST['date_reservation']
+            nombre_table = request.POST['nombre_table']
+            type_evenement = request.POST['type_evenement']
+            salle = Salle.objects.get(id=iddd)
+            client = Client.objects.create(nom=nom, prenom=prenom, tel=tel, email=email)
+            r = Reservation_salle.objects.create(client = client, salle=salle, 
+                                                    date_reservation = date_reservation,
+                                                    nombre_table=nombre_table,
+                                                    type_evenement=type_evenement)
+            client.save()
+            r.save()
+            idd = r.id;
+            return render (request, 'Reservation/impression_salle_admin.html', {'idd': idd}) 
+    
+        salles = Salle.objects.filter(type="VIP")
+        return render(request, 'Reservation/Ajout_reservation_salle_vip_admin.html',{'salles':salles})
+
+def ajout_normal_salle_admin(request):
+    if not request.user.is_authenticated:
+        return redirect('login')
+    else:
+        if request.method=="POST":   
+            nom = request.POST['nom']
+            prenom = request.POST['prenom']
+            tel = request.POST['tel']
+            email = request.POST['email']
+            iddd = request.POST['idd']
+            date_reservation = request.POST['date_reservation']
+            nombre_table = request.POST['nombre_table']
+            type_evenement = request.POST['type_evenement']
+            salle = Salle.objects.get(id=iddd)
+            client = Client.objects.create(nom=nom, prenom=prenom, tel=tel, email=email)
+            r = Reservation_salle.objects.create(client = client, salle=salle, 
+                                                    date_reservation = date_reservation,
+                                                    nombre_table=nombre_table,
+                                                    type_evenement=type_evenement)
+            client.save()
+            r.save()
+            idd = r.id;
+            return render (request, 'Reservation/impression_salle_admin.html', {'idd': idd})
+         
+        # salles_normales = Salle.objects.filter(type="NORMAL")
+        # salles_non_reserves = salles_normales.exclude(reservation_salle__isnull=False)
+        salles = Salle.objects.filter(type="NORMAL")
+
+        return render(request, 'Reservation/Ajout_reservation_salle_normal_admin.html',{'salles':salles})
+
 
 def ajout_normal_table(request):
     if request.method=="POST":   
@@ -875,6 +1001,7 @@ def ajout_vip_salle(request):
         r.save()
         idd = r.id;
         return render (request, 'Reservation/impression_salle.html', {'idd': idd}) 
+    
     salles = Salle.objects.filter(type="VIP")
     return render(request, 'Reservation/ajout_reservation_salle_vip.html',{'salles':salles})
 
